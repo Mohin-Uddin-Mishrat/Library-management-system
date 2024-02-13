@@ -1,6 +1,8 @@
 asgiref
 Django
+django-environ
 pillow
+psycopg2
 python-dotenv
 sqlparse
 tzdata
