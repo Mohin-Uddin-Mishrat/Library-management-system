@@ -1,3 +1,4 @@
+import dj_database_url
 
 import environ
 env = environ.Env()
@@ -136,16 +137,33 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SECRET_KEY = env("SECRET_KEY")
 
+#
+# DATABASES = {
+#
+#    'default': {
+#
+#        'ENGINE': 'django.db.backends.postgresql',
+#
+#        'NAME': env('DB_NAME'),
+#
+#        'USER': env('DB_USER'),
+#
+#        'PASSWORD': env('DB_PASSWORD'),
+#
+#        'HOST': env('DB_HOST'),
+#
+#        'PORT': env('DB_PORT'),
+#
+#    }
+#
+# }
+
 DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql',
-       'NAME': env('DB_NAME'),
-       'USER': env('DB_USER'),
-       'PASSWORD': env('DB_PASSWORD'),
-       'HOST': env('DB_HOST'),
-       'PORT': env('DB_PORT'),
-   }
-}
+    'default': dj_database_url.config(     
+        # Feel free to alter this value to suit your needs.       
+         default='postgres://library_management_ka6q_user:q8RFsMynveXyxrPxCExXeaV93G6fY6U1@dpg-cn5l6dect0pc738gnjgg-a.oregon-postgres.render.com/library_management_ka6q',   
+           )}
+
 
 
 
