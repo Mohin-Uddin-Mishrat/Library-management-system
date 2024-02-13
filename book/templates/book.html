@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>products</title>
+  <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.0.1/dist/tailwind.min.css">
+
+</head>
+
+<body>
+  {% include 'header.html' %}
+  {% include 'messege.html' %}
+  {% load static %}
+  <div class="container mx-auto ">
+    <div class=" grid grid-cols-4  gap-4">
+      
+      <div class="col-span-4  grid grid-cols-5 gap-4">
+        {% for b in book%}
+
+
+        <div class=" bg-blue-600 rounded bg-purple-200">
+          <div class="text-center ">
+            <img src="{{b.image.url}}" class=" inline-block h-40">
+          </div>
+          <div class="p-3">
+            <h1 class="font-bold ">{{b.title}}</h1>
+            <p>{{b.description | truncatewords:5}}</p>
+            <p class="font-bold"> Borrowing Price :<span class="font-bold text-red-700">{{b.borrowing_price}} $</span>
+            </p>
+            <div class="text-center  my-2">
+              <a href="{% url 'details' b.id %}"
+                class="text-white bg-purple-400 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">details</a>
+
+            </div>
+
+
+          </div>
+        </div>
+
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  {% include 'footer.html' %}
+
+</body>
+
+</html>

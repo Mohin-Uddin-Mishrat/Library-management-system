@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="grid grid-cols-2 gap-4 my-5  h-96">
+    <div class=" rounded-lg h-96">
+        <img src="{{ book.image.url }}" class="rounded-lg h-full w-full" alt="">
+    </div>
+    <div class="px-5 ">
+        <h1 class="font-bold text-red-700">{{ book.title }}</h1>
+        <h1 class="font-bold text-red-700"> Price :{{ book.borrowing_price }}</h1>
+        <div class="  my-2">
+            <a href="{% url 'return' book.id %}"
+                class="text-white bg-purple-400 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Return</a>
+            <a href="{% url 'borrow' book.id %}"
+                class="inline-block text-white w-1/2 bg-purple-400 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Borrow
+                Now</a>
+        </div>
+
+
+        <p class="py-5">{{ book.description }}</p>
+    </div>
+</div>
+<div class="border-b-2 border-red-500"></div>
+<section class=" grid grid-cols-2 gap-4 my-5">
+    <div class="">
+        <h1 class="pb-1 border-b-2 border-red-500 font-bold inline-block pr-5">Reviews</h1>
+        {% for review in  reviews %}
+        <div>
+            <div class="flex ">
+                <div class="w-8 h-8 my-2 inline-block">
+                    <img src="{{book.image.url}}" class="rounded-full w-full h-full " alt="">
+                </div>
+                <h1 class="m-2  ">
+                    <span class=" underline font-semibold">{{review.user.username}}</span>
+                </h1>
+            </div>
+            <div class="ml-10">
+                {{review.comment}}
+            </div>
+            <div class="border-b-2 pb-2 border-black-500"></div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <div>
+        {% if boolean %}
+        <form action="{% url 'reviewPost' book.id %}" class="text-center" method="post">
+            {% csrf_token %}
+            <label for="reviewPost" class="font-semibold">  Review Our Product</label>
+            <textarea id="reviewPost" name="reviewPost" rows="1" class="block  p-5 w-full text-sm text-gray-900 bg-white rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="write  here..."></textarea>
+            <p class="text-blue-500">{{messege}}</p>
+            <input class="inline-block text-white w-1/2 my-5  bg-purple-400 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2 text-center me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="submit" class="bg-blue-600">
+        </form>
+        {% else %}
+        <h1>If you want to review this book then you have  to borrow this book</h1>
+        {% endif %}
+
+    </div>
+    
+</section>
+{% endblock %}

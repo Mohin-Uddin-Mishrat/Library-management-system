@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="w-2/3 mx-auto rounded-lg bg-purple-200  p-5 flex justify-center">
+    <div>
+        <H1 class="text-black font-bold italic">User Name   : <span class=" ml-3 text-red-700">  {{request.user.username}}</span></H1>
+        <H1 class="text-black font-bold italic">Email   : <span class=" ml-3 text-red-700">  {{request.user.email}}</span></H1>
+        <H1 class="text-black font-bold italic">Account Balance   : <span class=" ml-3 text-red-700">  {{request.user.account.Balance}} $</span></H1>
+        <H1 class="text-black font-bold italic">Total Borrowed Books   : <span class=" ml-3 text-red-700">  {{countBook}} </span></H1>
+    </div>
+</div>
+<h1 class="text-center text-red-700 font-bold text-2xl my-5 italic">Borrowed Books Report</h1>
+<div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Book
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Borrow Price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Borrow
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Handover
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    balance_after_borrow
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    borrow Date
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Return Date
+                </th>
+            </tr>
+        </thead>
+
+        {% for report in object_list %}
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td scope="row" lass="px-6 py-4">
+                    {{report.book}}
+                </td>
+               
+                <td scope="row" lass="px-6 py-4">
+                    {{report.price}}
+                </td>
+                <td scope="row" lass="px-6 py-4">
+                    {% if report.borrow == False %}
+                      ----
+                    {% else %}
+                    {{report.borrow}}
+                    {% endif %}
+
+                </td>
+               
+                <td scope="row" lass="px-6 py-4">
+                    {{report.handover}}
+                </td>
+               
+                <td scope="row" lass="px-6 py-4">
+                    {{report.balance_after_borrow}}
+                </td>
+               
+                <td scope="row" lass="px-6 py-4">
+                    {{report.borrow_date}}
+                </td>
+
+                <td scope="row" lass="px-6 py-4">
+                    {{report.return_date}}
+                </td>
+               
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
+
+{% endblock %}

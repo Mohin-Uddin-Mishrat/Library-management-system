@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="grid grid-cols-2">
+    <div class="">
+        <img src="{% static 'banner.jpg' %}" class="w-full rounded-lg h-full" alt="">
+    </div>
+    <div class="flex  items-center">
+        <div class="ml-3">
+            <h1 class="text-2xl font-bold italic text-red-700">Welcome to Librarian</h1>
+            <p class="italic">1. You can deposit money being you are in logged in</p>
+            <p class="italic">2. You can borrow book by this money</p>
+            <p class="italic">3. And return also</p>
+            <p class="italic">4. If you return borrowed book after that you will be given your money back</p>
+            <p class="italic">5. You can also see report of your borrow and return</p>
+        </div>
+    </div>
+</div>
+{% endblock %}
