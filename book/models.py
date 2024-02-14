@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Book(models.Model):
     title = models.CharField( max_length = 15 )
+    category = models.CharField(max_length =12, null =True, blank = True)
     description = models.TextField()
     image = models.ImageField(upload_to='midia/uploads/')
     borrowing_price = models.DecimalField(max_digits = 12 , decimal_places=2)

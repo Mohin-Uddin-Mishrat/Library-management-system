@@ -15,8 +15,29 @@
   {% load static %}
   <div class="container mx-auto ">
     <div class=" grid grid-cols-4  gap-4">
-      
-      <div class="col-span-4  grid grid-cols-5 gap-4">
+
+      <div class="">
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'Thriller' %}" class=" text-white font-semibold"> Thriller </a>
+        </div>
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'Fictional' %}" class=" text-white font-semibold"> Fictional </a>
+        </div>
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'Mystery' %}" class=" text-white font-semibold"> Mystery </a>
+        </div>
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'Fantasy' %}" class=" text-white font-semibold"> Fantacy </a>
+        </div>
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'Biography' %}" class=" text-white font-semibold"> Biography </a>
+        </div>
+        <div class=" text-center w-2/3 py-2 mb-2  h-10   rounded bg-purple-400 ">
+          <a href="{% url 'products' 'History'%}" class=" text-white font-semibold"> History </a>
+        </div>
+        
+      </div>
+      <div class="col-span-3  grid grid-cols-4 gap-4">
         {% for b in book%}
 
 
@@ -26,6 +47,7 @@
           </div>
           <div class="p-3">
             <h1 class="font-bold ">{{b.title}}</h1>
+            <h1 class="font-semibold "> Category :{{b.category}}</h1>
             <p>{{b.description | truncatewords:5}}</p>
             <p class="font-bold"> Borrowing Price :<span class="font-bold text-red-700">{{b.borrowing_price}} $</span>
             </p>

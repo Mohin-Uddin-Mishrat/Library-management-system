@@ -8,11 +8,19 @@ from django.urls import reverse_lazy
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+
 class productView(View):
-    def get(self , request ):
-           book = Book.objects.all()
-           return render(request , 'book.html', {'book':book})
-    
+    def get(self , request, category = None  ):
+           if category == 'all':
+               book = Book.objects.all()
+               return render(request , 'book.html', {'book':book})
+           else:
+               book = Book.objects.filter(category = category )
+               return render(request , 'book.html', {'book':book})
+
+        
+
+        
     
              
     
